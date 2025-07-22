@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://adriancode.com
+
+# Sitemaps
+Sitemap: https://adriancode.com/sitemap.xml

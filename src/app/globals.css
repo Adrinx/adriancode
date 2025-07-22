@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap");
+
+@font-face {
+  font-family: "Chillax";
+  src: url("/fonts/Chillax-Variable.ttf") format("truetype");
+  font-weight: 100 900; /* Variable font support */
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900; /* Variable font support */
+  font-style: normal;
+}
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900; /* Variable font support */
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sora";
+  src: url("/fonts/Sora-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900; /* Variable font support */
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::selection {
+    @apply bg-secondary-500 text-white;
+  }
+  .l::first-letter {
+    @apply text-secondary-500;
+  }
+
+  p {
+    @apply sm:text-base md:text-lg text-primary-700 dark:text-primary-50;
+  }
+
+  h1 {
+    @apply text-3xl sm:text-4xl font-bold font-Sora;
+  }
+
+  h2 {
+    @apply text-lg sm:text-lg md:text-2xl font-semibold font-Sora;
+  }
+
+  h3 {
+    @apply text-base sm:text-lg md:text-xl font-semibold font-Sora;
+  }
+
+  h4 {
+    @apply text-sm sm:text-base md:text-lg font-semibold font-Sora;
+  }
+
+  small {
+    @apply text-xs sm:text-sm md:text-base text-primary-700 dark:text-primary-50;
+  }
+
+  header h2 {
+    @apply text-lg sm:text-lg md:text-xl font-semibold font-Sora;
+  }
+
+  section h2 {
+    @apply text-2xl sm:text-2xl md:text-3xl font-Sora font-bold ;
+  }
+
+  li {
+    @apply text-sm sm:text-sm md:text-base;
+  }
+}
+
+a {
+  color: inherit;
+  display: block;
+}
+
+li {
+  list-style: none;
+}
+
+/* global.css */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Styles pour améliorer la lisibilité du Markdown */
+.container {
+  max-width: 900px;
+  margin: 128px auto 0;
+}
+
+/* Amélioration des titres */
+.article h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.article h2 {
+  font-size: 24px;
+  border-left: 5px solid #ffcc00;
+  padding-left: 10px;
+  color: #ffcc00;
+  margin-bottom: 15px;
+}
+
+.article h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Amélioration du texte */
+.article p {
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+/* Listes */
+.article ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.article li {
+  margin-bottom: 10px;
+}
+
+/* Lien */
+
+.article {
+  margin-bottom: 100px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: #aaa;
+}
