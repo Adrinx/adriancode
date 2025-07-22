@@ -1,0 +1,242 @@
+/* Importez les variables globales pour la cohérence des couleurs */
+@import './variables.css';
+
+/* Styles généraux de la page d'aide */
+.help-page {
+    padding: 20px;
+    /* Correction: Utilisation de --card-background pour un fond de "page/contenu principal" si la page d'aide est une "carte" */
+    /* Si la page d'aide est le fond principal, utilisez --background-color */
+    background-color: var(--card-background); /* Ou var(--background-color) selon le design */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    color: var(--text-color); /* Couleur du texte par défaut pour la page */
+    margin-bottom: 20px;
+
+    /* RETIREZ OU COMMENTEZ CES LIGNES si elles sont là: */
+    /* max-width: 1200px; */
+    /* margin: 0 auto; */
+
+    /* Assurez-vous que ces lignes sont bien présentes pour qu'il prenne la largeur disponible */
+    width: 100%; /* Important pour qu'il s'étire sur 100% de son parent */
+    box-sizing: border-box; /* Pour que le padding soit inclus dans la largeur totale */
+}
+
+.help-title {
+    color: var(--text-color); /* Texte principal : noir sur clair, blanc sur sombre */
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.help-sections-wrapper {
+    display: flex;
+    flex-direction: column; /* Les sections s'empilent */
+    gap: 30px; /* Espace entre les sections */
+}
+
+.help-section {
+    background-color: var(--card-background); /* Le fond des sections d'aide */
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.help-section h2 {
+    color: var(--text-color); /* Texte principal : noir sur clair, blanc sur sombre */
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    border-bottom: 1px solid var(--border-color); /* Bordure qui change de couleur */
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.help-section .section-icon {
+    color: var(--primary-color); /* Utilisez la couleur primaire pour les accents d'icônes */
+    font-size: 1.2em;
+}
+
+/* Styles pour la section FAQ */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    border: 1px solid var(--border-color); /* Bordure qui change de couleur */
+    border-radius: var(--border-radius-small);
+    overflow: hidden; /* Pour cacher le contenu de la réponse */
+}
+
+.faq-question {
+    width: 100%;
+    /* Utilise une variante plus foncée/claire de la carte pour le fond du bouton FAQ */
+    background-color: var(--card-background-darker); 
+    color: var(--text-color); /* Texte principal : noir sur clair, blanc sur sombre */
+    padding: 15px 20px;
+    text-align: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.faq-question:hover {
+    background-color: var(--hover-color); /* Variable pour le survol */
+    color: var(--primary-color); /* Couleur primaire pour le texte au survol */
+}
+
+.faq-question.active {
+    background-color: var(--primary-color); /* Couleur primaire pour l'état actif */
+    color: var(--button-text-color); /* Normalement blanc pour le texte du bouton */
+}
+
+.faq-question .faq-arrow {
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+    color: var(--text-color); /* Assurez-vous que la flèche change de couleur aussi */
+}
+
+.faq-question.active .faq-arrow {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 15px 20px;
+    background-color: var(--card-background); /* Le fond de la réponse FAQ */
+    /* Correction: Utilisez --border-color pour la bordure, pas --border-color-light */
+    border-top: 1px solid var(--border-color); 
+    color: var(--secondary-text-color); /* Texte secondaire : gris foncé sur clair, gris clair sur sombre */
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+/* Styles pour la section Contact */
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact-info-item {
+    /* Utilise une variante plus foncée/claire de la carte pour le fond des infos de contact */
+    background-color: var(--card-background-darker); 
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info-item .contact-icon {
+    font-size: 2.5em;
+    color: var(--primary-color); /* Couleur primaire pour les icônes de contact */
+}
+
+.contact-info-item h3 {
+    margin: 0;
+    color: var(--text-color); /* Texte principal : noir sur clair, blanc sur sombre */
+    font-size: 1.3em;
+}
+
+.contact-info-item p {
+    margin: 5px 0 0;
+    /* Correction: La couleur des paragraphes de contact devrait être --secondary-text-color */
+    color: var(--secondary-text-color); 
+    font-size: 0.95em;
+}
+
+.contact-info-item a {
+    color: var(--primary-color); /* Couleur primaire pour les liens */
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.contact-info-item a:hover {
+    text-decoration: underline;
+}
+
+/* Styles du formulaire de contact (réutilise les styles du formulaire Settings) */
+.contact-form {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color); /* Bordure qui change de couleur */
+}
+
+.contact-form h3 {
+    /* Correction: Utilise --text-color pour le titre du formulaire, pas --text-color-dark */
+    color: var(--text-color); 
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    /* Correction: Utilise --text-color pour les labels, pas --text-color-light */
+    color: var(--text-color); 
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: calc(100% - 20px); /* Ajustez si nécessaire */
+    padding: 12px 10px;
+    border: 1px solid var(--border-color); /* Bordure qui change de couleur */
+    border-radius: var(--border-radius-small);
+    background-color: var(--input-background); /* Fond d'input qui change de couleur */
+    /* Correction: La couleur du texte dans l'input devrait être --text-color */
+    color: var(--text-color); 
+    font-size: 1em;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color); /* Couleur d'accent pour le focus */
+    /* Assurez-vous que --primary-rgb est bien défini dans vos variables */
+    /* Exemple: --primary-rgb-dark: 236, 93, 106; --primary-rgb-light: 24, 144, 255; */
+    /* Si --primary-rgb n'est pas défini, cette ligne peut ne pas fonctionner comme prévu */
+    box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 0,0,0), 0.2); 
+}
+
+.contact-form textarea {
+    resize: vertical; /* Permet le redimensionnement vertical */
+    min-height: 100px;
+}
+
+.contact-form .btn-primary {
+    /* Réutilisation du bouton primaire défini dans App.css ou SettingsPage.css */
+    width: auto; /* Pour que le bouton ne prenne pas toute la largeur */
+    display: inline-block;
+    /* Assurez-vous que ces styles de bouton sont définis avec vos variables de thème
+       où le bouton est défini (par exemple, dans un fichier CSS global ou App.css) */
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+}
+
+/* Styles responsifs */
+@media (max-width: 600px) {
+    .contact-info-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur les très petits écrans */
+    }
+}

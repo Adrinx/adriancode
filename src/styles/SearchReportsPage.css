@@ -1,0 +1,261 @@
+/* Importez les variables globales pour la cohérence des couleurs */
+@import './variables.css';
+
+/* Styles généraux de la page de recherche de rapports */
+.search-reports-page {
+    padding: 20px;
+    background-color: var(--card-background); /* Utilise la couleur de fond des cartes */
+    border-radius: var(--border-radius); /* Bords arrondis comme les cartes */
+    box-shadow: var(--shadow); /* Ombre comme les cartes */
+    color: var(--text-color); /* Couleur du texte par défaut pour la page */
+    margin-bottom: 20px;
+    
+    /* Permet à la page de prendre toute la largeur de son parent (main-content-area.full-width-layout) */
+    width: 100%; 
+    box-sizing: border-box;
+    /* Pas de max-width ni margin: 0 auto; ici, car le parent gère ça */
+}
+
+.reports-title {
+    /* Correction: Utilise --text-color pour le titre principal */
+    color: var(--text-color);
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Styles pour la barre de recherche et les filtres */
+.reports-search-controls {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    /* Correction: Utilise --card-background-darker pour le fond des contrôles de recherche */
+    background-color: var(--card-background-darker);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow); /* Utilise --shadow pour une cohérence globale */
+    align-items: center; /* Centrer verticalement les éléments de contrôle */
+}
+
+.search-input-group {
+    flex-grow: 1; /* Prend l'espace disponible */
+    display: flex;
+    align-items: center;
+    background-color: var(--input-background); /* Fond de l'input */
+    border: 1px solid var(--border-color); /* Bordure adaptative */
+    border-radius: var(--border-radius-small);
+    padding: 8px 15px;
+}
+
+.search-input-group .search-icon {
+    /* Correction: Utilise --secondary-text-color pour l'icône de recherche */
+    color: var(--secondary-text-color);
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.search-input-group input {
+    flex-grow: 1;
+    border: none;
+    background: none;
+    outline: none;
+    color: var(--text-color); /* Couleur du texte dans l'input */
+    font-size: 1em;
+    padding: 0; /* Réinitialiser le padding de l'input */
+}
+
+.search-input-group input::placeholder {
+    /* Correction: Utilise --secondary-text-color pour le placeholder */
+    color: var(--secondary-text-color);
+}
+
+.filter-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap; /* Pour la réactivité */
+}
+
+.filter-group .filter-icon {
+    /* Correction: Utilise --primary-color pour l'icône de filtre */
+    color: var(--primary-color);
+    font-size: 1.4em;
+}
+
+.filter-group select,
+.filter-group input[type="date"] {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color); /* Bordure adaptative */
+    border-radius: var(--border-radius-small);
+    background-color: var(--input-background); /* Fond de l'input/select */
+    color: var(--text-color); /* Texte dans l'input/select */
+    font-size: 1em;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.filter-group select:focus,
+.filter-group input[type="date"]:focus {
+    /* Correction: Utilise --primary-color pour le focus */
+    border-color: var(--primary-color);
+    /* Assurez-vous que --primary-rgb est défini dans vos variables */
+    box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 0,0,0), 0.2);
+}
+
+.filter-group .clear-filters-btn {
+    background-color: var(--expenses-color-dark); /* Vous aviez danger-color, j'ai mis expenses-color-dark car il était déjà défini et est rouge */
+    color: var(--button-text-color); /* Texte du bouton adapté */
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.filter-group .clear-filters-btn:hover {
+    /* Utilisation de --expenses-color-dark pour le hover si vous n'avez pas de --danger-color-dark */
+    background-color: var(--expenses-color-dark); /* Ou définissez une variable --danger-color-hover */
+    filter: brightness(85%); /* Alternative pour assombrir au survol */
+    transform: translateY(-1px);
+}
+
+
+/* Styles pour les résultats de recherche (cartes de rapport) */
+.reports-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 ou 3 colonnes flexibles */
+    gap: 25px;
+}
+
+.report-card {
+    /* Correction: Utilise --card-background-darker pour le fond de la carte de rapport */
+    background-color: var(--card-background-darker);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow); /* Ombre adaptative */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pousse les actions vers le bas */
+    transition: transform 0.2s ease;
+}
+
+.report-card:hover {
+    transform: translateY(-5px);
+}
+
+.report-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.report-type-icon {
+    font-size: 1.8em;
+    /* Correction: Utilise --primary-color pour l'icône de type de rapport */
+    color: var(--primary-color);
+}
+
+.report-header h3 {
+    margin: 0;
+    font-size: 1.3em;
+    /* Correction: Utilise --text-color pour le titre du rapport */
+    color: var(--text-color);
+    flex-grow: 1; /* Permet au titre de prendre de la place */
+}
+
+.report-date {
+    font-size: 0.85em;
+    /* Correction: Utilise --secondary-text-color pour la date du rapport */
+    color: var(--secondary-text-color);
+    white-space: nowrap; /* Empêche le retour à la ligne de la date */
+}
+
+.report-description {
+    font-size: 0.95em;
+    /* Correction: Utilise --secondary-text-color pour la description du rapport */
+    color: var(--secondary-text-color);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Permet à la description de prendre de l'espace */
+}
+
+.report-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px; /* Espace entre les éléments meta */
+    font-size: 0.85em;
+    /* Correction: Utilise --secondary-text-color pour le texte meta général */
+    color: var(--secondary-text-color);
+    margin-bottom: 15px;
+}
+
+.report-meta strong {
+    /* Correction: Utilise --text-color pour les éléments strong dans meta */
+    color: var(--text-color);
+}
+
+.report-actions {
+    text-align: right;
+}
+
+.btn-download {
+    /* Correction: Utilise --primary-color pour le fond du bouton de téléchargement */
+    background-color: var(--primary-color);
+    color: var(--button-text-color); /* Texte du bouton adapté */
+    border: none;
+    padding: 10px 15px;
+    border-radius: var(--border-radius-small);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-download:hover {
+    /* Utilise une version plus foncée de primary-color pour le hover */
+    background-color: var(--primary-color-darker); /* Assurez-vous d'avoir cette variable ou filtre */
+    transform: translateY(-1px);
+}
+
+.no-results {
+    grid-column: 1 / -1; /* Prend toute la largeur de la grille */
+    text-align: center;
+    /* Correction: Utilise --secondary-text-color pour le message "pas de résultats" */
+    color: var(--secondary-text-color);
+    font-size: 1.1em;
+    padding: 40px;
+    /* Correction: Utilise --card-background-darker pour le fond "pas de résultats" */
+    background-color: var(--card-background-darker);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow); /* Ombre adaptative */
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .reports-search-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .filter-group select,
+    .filter-group input[type="date"],
+    .filter-group .clear-filters-btn {
+        width: 100%;
+    }
+}
