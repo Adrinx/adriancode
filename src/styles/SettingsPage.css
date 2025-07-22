@@ -1,0 +1,283 @@
+/* Importez les variables globales pour la cohérence des couleurs */
+@import './variables.css';
+
+/* Styles généraux de la page de paramètres */
+.settings-page {
+    padding: 20px;
+    background-color: var(--card-background); /* Utilise la couleur de fond des cartes, cohérent */
+    border-radius: var(--border-radius); /* Bords arrondis comme les cartes */
+    box-shadow: var(--shadow); /* Ombre comme les cartes */
+    color: var(--text-color); /* Couleur du texte par défaut pour la page */
+    margin-bottom: 20px; /* Espace si vous l'intégrez dans le main-dashboard-content */
+}
+
+.settings-title {
+    /* Correction: Utilise --text-color pour le titre principal */
+    color: var(--text-color); 
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.settings-sections-wrapper {
+    display: flex;
+    gap: 30px; /* Espace entre la barre latérale et le contenu principal */
+    flex-wrap: wrap; /* Permet aux sections de passer à la ligne sur petits écrans */
+}
+
+/* Styles de la barre latérale des paramètres */
+.settings-sidebar {
+    flex: 0 0 250px; /* Largeur fixe pour la barre latérale */
+    /* Correction: Utilise --card-background-darker pour le fond de la sidebar */
+    background-color: var(--card-background-darker); 
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user-profile-summary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color); /* Ligne de séparation adaptative */
+}
+
+.user-profile-summary .avatar-small {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* Correction: Utilise --primary-color pour la bordure de l'avatar */
+    border: 2px solid var(--primary-color); 
+}
+
+.user-profile-summary .avatar-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-profile-summary .profile-info h3 {
+    margin: 0;
+    font-size: 1.2em;
+    /* Correction: Utilise --text-color pour le nom d'utilisateur */
+    color: var(--text-color); 
+}
+
+.user-profile-summary .profile-info p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    /* Correction: Utilise --secondary-text-color pour le rôle */
+    color: var(--secondary-text-color); 
+}
+
+.settings-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.settings-nav-item {
+    display: block;
+    padding: 12px 15px;
+    border-radius: var(--border-radius-small);
+    color: var(--text-color); /* Texte principal pour les éléments de navigation */
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.settings-nav-item:hover {
+    background-color: var(--hover-color); /* Couleur de survol adaptative */
+    /* Correction: Utilise --primary-color pour le texte au survol */
+    color: var(--primary-color); 
+}
+
+.settings-nav-item.active {
+    /* Correction: Utilise --primary-color pour le fond actif */
+    background-color: var(--primary-color); 
+    color: var(--button-text-color); /* Blanc ou couleur claire pour le texte sur accent */
+}
+
+
+/* Styles du contenu principal des paramètres */
+.settings-content {
+    flex: 1; /* Prend l'espace restant */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.settings-section {
+    background-color: var(--card-background); /* Le fond des sections de paramètres */
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.settings-section h2 {
+    /* Correction: Utilise --text-color pour les titres de section */
+    color: var(--text-color); 
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    border-bottom: 1px solid var(--border-color); /* Bordure adaptative */
+    padding-bottom: 15px;
+}
+
+.settings-form .form-group {
+    margin-bottom: 20px;
+}
+
+.settings-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    /* Correction: Utilise --text-color pour les labels de formulaire */
+    color: var(--text-color); 
+}
+
+.settings-form input[type="text"],
+.settings-form input[type="email"],
+.settings-form input[type="password"],
+.settings-form select {
+    width: calc(100% - 20px); /* Ajustez selon votre padding pour éviter le débordement */
+    padding: 12px 10px;
+    border: 1px solid var(--border-color); /* Bordure adaptative */
+    border-radius: var(--border-radius-small);
+    background-color: var(--input-background); /* Fond d'input adaptatif */
+    color: var(--text-color); /* Texte d'input : noir sur clair, blanc sur sombre */
+    font-size: 1em;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.settings-form input:focus,
+.settings-form select:focus {
+    outline: none;
+    /* Correction: Utilise --primary-color pour le focus */
+    border-color: var(--primary-color); 
+    /* Si --primary-rgb est défini (ex: 236, 93, 106), alors ça fonctionne. Sinon, utilisez une couleur fixe ou définissez la variable. */
+    box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 0,0,0), 0.2); 
+}
+
+.btn-primary {
+    /* Correction: Utilise --primary-color pour le fond du bouton */
+    background-color: var(--primary-color); 
+    color: var(--button-text-color);
+    border: none;
+    padding: 12px 25px;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+    /* Correction: Utilise --primary-color-dark ou une variation assombrie de --primary-color */
+    background-color: var(--primary-color-darker); /* Assurez-vous d'avoir cette variable ou définissez une couleur */
+    transform: translateY(-1px);
+}
+
+/* Styles pour les options comme les notifications et le thème */
+.settings-option-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    /* Correction: Utilise --border-color pour la ligne de séparation */
+    border-bottom: 1px solid var(--border-color); 
+}
+
+.settings-option-row:last-child {
+    border-bottom: none; /* Pas de ligne sous le dernier élément */
+}
+
+.settings-option-row label {
+    font-weight: 500;
+    color: var(--text-color); /* Texte principal pour les labels d'options */
+}
+
+/* Styles du Toggle Switch (repris de ThemeToggle si besoin ou refait ici) */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Correction: Utilise --card-background-darker pour le fond du slider */
+    background-color: var(--card-background-darker); 
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    /* Correction: Utilise --text-color pour la couleur du "bouton" du switch */
+    background-color: var(--text-color); 
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    /* Correction: Utilise --primary-color pour le slider activé */
+    background-color: var(--primary-color); 
+}
+
+input:focus + .slider {
+    /* Correction: Utilise --primary-color pour le focus du switch */
+    box-shadow: 0 0 1px var(--primary-color); 
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+    .settings-sections-wrapper {
+        flex-direction: column; /* La barre latérale passe au-dessus du contenu sur mobile */
+    }
+
+    .settings-sidebar {
+        flex: none; /* Ne prend plus de largeur fixe */
+        width: 100%; /* Prend toute la largeur disponible */
+    }
+}

@@ -1,0 +1,94 @@
+:root {
+  /* Dark Theme Colors */
+  --background-color-dark: #22252a; /* Main background */
+  --card-background-dark: #2d3035; /* Card background */
+  --text-color-dark: #ffffff; /* Main text color - WHITE */
+  --secondary-text-color-dark: #a0a0a0; /* Secondary text, labels - Light Gray */
+  --primary-color-dark: #ec5d6a; /* Accent color (red in image) */
+  --secondary-color-dark: #6a6a6a; /* Grey for icons, borders */
+  --border-color-dark: #3a3d42; /* Borders on cards, inputs */
+  --shadow-color-dark: rgba(0, 0, 0, 0.2); /* Subtle shadows */
+  --header-background-dark: #2d3035; /* Header background */
+  --input-background-dark: #3a3d42; /* Input fields */
+  --button-background-dark: #ec5d6a; /* Button background */
+  --button-text-color-dark: #ffffff; /* Button text */
+  --icon-color-dark: #ffffff; /* General icon color - WHITE */
+  --income-color-dark: #4caf50; /* Green for income */
+  --expenses-color-dark: #f44336; /* Red for expenses */
+  --points-color-dark: #ffc107; /* Amber for points */
+  --chart-bar-color-dark: #ec5d6a; /* Chart bar color */
+  --chart-line-color-dark: #ec5d6a; /* Chart line color */
+
+
+  /* Light Theme Colors (Defaults if not explicitly set below) */
+  --background-color-light: #f0f2f5;
+  --card-background-light: #ffffff;
+  --text-color-light: #000000; /* Main text color - BLACK */
+  --secondary-text-color-light: #333333; /* Secondary text, labels - Dark Gray */
+  --primary-color-light: #1890ff; /* A common light theme accent blue */
+  --secondary-color-light: #cccccc;
+  --border-color-light: #e0e0e0;
+  --shadow-color-light: rgba(0, 0, 0, 0.1);
+  --header-background-light: #ffffff;
+  --input-background-light: #f5f5f5;
+  --button-background-light: #1890ff;
+  --button-text-color-light: #ffffff;
+  --icon-color-light: #000000; /* General icon color - BLACK */
+  --income-color-light: #28a745;
+  --expenses-color-light: #dc3545;
+  --points-color-light: #ffc107;
+  --chart-bar-color-light: #1890ff;
+  --chart-line-color-light: #1890ff;
+}
+
+/* Theme variable assignments */
+[data-theme='light'] {
+  --background-color: var(--background-color-light);
+  --card-background: var(--card-background-light);
+  --text-color: var(--text-color-light);
+  --secondary-text-color: var(--secondary-text-color-light);
+  --primary-color: var(--primary-color-light);
+  --secondary-color: var(--secondary-color-light);
+  --border-color: var(--border-color-light);
+  --shadow-color: var(--shadow-color-light);
+  --header-background: var(--header-background-light);
+  --input-background: var(--input-background-light);
+  --button-background: var(--button-background-light);
+  --button-text-color: var(--button-text-color-light);
+  --icon-color: var(--icon-color-light);
+  --income-color: var(--income-color-light);
+  --expenses-color: var(--expenses-color-light);
+  --points-color: var(--points-color-light);
+  --chart-bar-color: var(--chart-bar-color-light);
+  --chart-line-color: var(--chart-line-color-light);
+}
+
+[data-theme='dark'] {
+  --background-color: var(--background-color-dark);
+  --card-background: var(--card-background-dark);
+  --text-color: var(--text-color-dark);
+  --secondary-text-color: var(--secondary-text-color-dark);
+  --primary-color: var(--primary-color-dark);
+  --secondary-color: var(--secondary-color-dark);
+  --border-color: var(--border-color-dark);
+  --shadow-color: var(--shadow-color-dark);
+  --header-background: var(--header-background-dark);
+  --input-background: var(--input-background-dark);
+  --button-background: var(--button-background-dark);
+  --button-text-color: var(--button-text-color-dark);
+  --icon-color: var(--icon-color-dark);
+  --income-color: var(--income-color-dark);
+  --expenses-color: var(--expenses-color-dark);
+  --points-color: var(--points-color-dark);
+  --chart-bar-color: var(--chart-bar-color-dark);
+  --chart-line-color: var(--chart-line-color-dark);
+}
+
+/* Set default theme to dark */
+html {
+  color-scheme: dark; /* Helps with native element styling */
+}
+body {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark); /* Will be white by default */
+}

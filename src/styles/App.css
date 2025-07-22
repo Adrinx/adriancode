@@ -1,0 +1,908 @@
+/* src/styles/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import './variables.css'; /* Importation des variables de thème */
+
+/* --- Styles de base et réinitialisation --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Définit la couleur du texte par défaut pour les éléments natifs */
+  color-scheme: dark; /* Aide à l'intégration du mode sombre/clair */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prévient les barres de défilement horizontales */
+  background-color: var(--background-color); /* Applique la couleur de fond du thème */
+  color: var(--text-color); /* Applique la couleur de texte du thème */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  /* margin, padding, height, box-sizing sont déjà sur body/html ou gérés par .container */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* --- Header Styles --- */
+.header {
+  background-color: var(--header-background);
+  color: var(--text-color);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  gap: 20px;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne sur petits écrans */
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  /* Flex-grow pour prendre de l'espace si nécessaire sur mobile */
+  flex-grow: 1;
+}
+
+.header-logo {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: var(--button-text-color);
+  flex-shrink: 0; /* Empêche le logo de rétrécir */
+}
+
+.header-nav {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap; /* Permet aux liens de passer à la ligne */
+}
+
+.header-nav a {
+  color: var(--secondary-text-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.2s ease;
+  white-space: nowrap; /* Empêche les liens de se couper */
+}
+
+.header-nav a:hover,
+.header-nav a.active {
+  color: var(--text-color);
+}
+
+.header-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Permet aux éléments de droite de passer à la ligne */
+  justify-content: flex-end; /* Aligne à droite par défaut */
+  flex-grow: 1; /* Permet de prendre de l'espace si nécessaire sur mobile */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--input-background);
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 250px; /* Largeur fixe sur les grands écrans */
+  flex-shrink: 1; /* Permet de rétrécir si l'espace est limité */
+  min-width: 150px; /* Largeur minimale pour ne pas être illisible */
+}
+
+.search-bar input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+  flex-grow: 1;
+  padding: 0 8px;
+  font-size: 0.9em;
+}
+
+.search-bar input::placeholder {
+  color: var(--secondary-text-color);
+}
+
+.search-bar svg {
+  color: var(--secondary-text-color);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-profile-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.user-profile-text span:first-child {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.user-profile-text span:last-child {
+  font-size: 0.8em;
+  color: var(--secondary-text-color);
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  color: var(--button-text-color);
+  flex-shrink: 0; /* Empêche l'avatar de rétrécir */
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* --- Main Content Area (Layout Principal) --- */
+.main-content-area {
+  flex-grow: 1; /* Permet à cette section de prendre l'espace disponible */
+  padding: 20px; /* Padding global autour du contenu principal */
+  box-sizing: border-box; /* S'assure que le padding est inclus dans la taille */
+  width: 100%; /* Prend toute la largeur de son parent (#root) */
+  max-width: 1300px; /* Limite la largeur du contenu global sur les grands écrans */
+  margin: 0 auto; /* Centre le bloc de contenu principal */
+  min-height: calc(100vh - var(--header-height, 80px)); /* Ajuste la hauteur si le header a une hauteur fixe */
+}
+
+/* Styles spécifiques au layout du Dashboard (deux colonnes) */
+.main-content-area.dashboard-layout {
+  display: grid; /* Utilise CSS Grid pour le layout */
+  grid-template-columns: 1fr 350px; /* 1ère colonne flexible, 2ème colonne fixe */
+  gap: 30px; /* Espace entre les colonnes */
+  padding: 30px; /* Padding un peu plus grand pour le dashboard */
+}
+
+/* Styles spécifiques aux pages pleine largeur (Settings, Help, Search Reports) */
+.main-content-area.full-width-layout {
+  display: flex; /* Utilise Flexbox pour un seul enfant */
+  flex-direction: column; /* L'enfant unique prendra toute la largeur et se positionnera en colonne */
+  gap: 20px; /* Espace entre les éléments si plusieurs enfants étaient empilés */
+}
+
+
+/* --- Styles des sections spécifiques au Dashboard --- */
+.dashboard-left {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.dashboard-right {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Overview Section (Grid pour les petites cartes) */
+.overview-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Permet aux éléments de l'en-tête de passer à la ligne */
+  gap: 10px;
+}
+
+.overview-header h2 {
+  font-size: 1.8em;
+  color: var(--text-color);
+  flex-shrink: 0;
+}
+
+.overview-tabs {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.overview-tabs button {
+  background: none;
+  border: none;
+  color: var(--secondary-text-color);
+  font-size: 1em;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.overview-tabs button:hover {
+  color: var(--text-color);
+}
+
+.overview-tabs button.active {
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+  font-weight: 600;
+}
+
+.overview-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+/* Dashboard Card Styles */
+.dashboard-card {
+  background-color: var(--background-color-card);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-card h3 {
+  color: var(--text-color);
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.dashboard-card .card-content {
+  flex-grow: 1;
+}
+
+.dashboard-card.small-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+}
+
+.small-stat .stat-value {
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.small-stat .stat-label {
+  font-size: 0.9em;
+  color: var(--secondary-text-color);
+}
+
+.small-stat .stat-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.small-stat .stat-icon.outgoing { background-color: rgba(236, 93, 106, 0.2); color: var(--expenses-color); }
+.small-stat .stat-icon.incoming { background-color: rgba(76, 175, 80, 0.2); color: var(--income-color); }
+.small-stat .stat-icon.reserved { background-color: rgba(255, 193, 7, 0.2); color: var(--points-color); }
+
+.small-stat .stat-value.outgoing { color: var(--expenses-color); }
+.small-stat .stat-value.incoming { color: var(--income-color); }
+
+
+.balance-card {
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 150px;
+}
+
+.balance-card .balance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balance-card .balance-header svg {
+  font-size: 1.5em;
+}
+
+.balance-card .balance-amount {
+  font-size: 2em;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.balance-card .card-number {
+  font-size: 0.9em;
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+/* Transactions/Account Overview */
+.transactions-card {
+  padding: 0; /* Pas de padding interne pour celui-ci car le contenu a son propre padding */
+}
+
+.transactions-header {
+  padding: 25px 25px 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap; /* Pour la réactivité */
+  gap: 10px;
+}
+
+.transactions-header h3 {
+  margin-bottom: 0;
+}
+
+.transactions-chart-container {
+  padding: 25px;
+}
+
+/* Simple Bar Chart (for Account Overview) */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 250px; /* Hauteur fixe pour la zone du graphique */
+}
+
+.bar-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bar-chart-label {
+  font-size: 0.8em;
+  color: var(--secondary-text-color);
+  min-width: 40px; /* Assure l'alignement des étiquettes */
+  text-align: right;
+  flex-shrink: 0; /* Empêche l'étiquette de rétrécir */
+}
+
+.bar-container {
+  flex-grow: 1;
+  background-color: var(--input-background);
+  border-radius: 4px;
+  height: 10px;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: var(--chart-bar-color);
+  border-radius: 4px;
+  transition: width 0.5s ease-out;
+  position: relative;
+}
+
+.bar-value {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  font-size: 0.7em;
+  color: var(--secondary-text-color);
+  white-space: nowrap;
+}
+/* S'assure que la valeur est visible si la barre est très courte */
+.bar-fill[style*="width: 0%"] + .bar-value {
+  right: auto;
+  left: 0;
+}
+
+
+/* Expenses Chart */
+.expenses-chart-card .expenses-chart-inner {
+  padding: 0 25px 25px 25px;
+}
+
+.expenses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  flex-wrap: wrap; /* Pour la réactivité */
+  gap: 10px;
+}
+
+.expenses-header h3 {
+  margin-bottom: 0;
+}
+
+.expenses-header select {
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.9em;
+  appearance: none; /* Supprime la flèche par défaut */
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20fill%3D%22%23a0a0a0%22%20d%3D%22M218.41%2091.56L138.83%20171.14a8%208%200%200%201-11.31%200L38.41%2091.56a8%208%200%200%201%2011.31-11.31L128%20154.08l78.28-78.28a8%208%200%200%201%2011.31%2011.31z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.expenses-chart-area {
+  height: 200px; /* Hauteur fixe pour le graphique */
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.expenses-chart-bar {
+  flex: 1;
+  background-color: var(--input-background);
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  height: 0; /* Hauteur initiale à 0 pour l'animation */
+  transition: height 0.5s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.expenses-chart-bar.active {
+  background-color: var(--primary-color);
+}
+
+.expenses-chart-bar .amount {
+  position: absolute;
+  top: -25px;
+  font-size: 0.75em;
+  font-weight: 500;
+  color: var(--secondary-text-color);
+  white-space: nowrap;
+}
+
+.expenses-chart-bar.active .amount {
+  color: var(--text-color);
+}
+
+.expenses-chart-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  color: var(--secondary-text-color);
+  padding: 0 5px;
+}
+
+/* Progress/Goals Card */
+.progress-card {
+  padding: 25px;
+}
+
+.progress-item {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.progress-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: rgba(236, 93, 106, 0.2); /* Couleur primaire avec opacité */
+  color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  flex-shrink: 0; /* Empêche l'icône de rétrécir */
+}
+
+.progress-details {
+  flex-grow: 1;
+}
+
+.progress-details h4 {
+  font-size: 1em;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: var(--input-background);
+  border-radius: 5px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  width: 0%;
+  transition: width 0.5s ease-out;
+}
+
+.progress-percentage {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: right;
+  margin-top: 5px;
+}
+
+
+/* Right Column Cards */
+.right-column-user-card {
+  background-color: var(--background-color-card);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  text-align: center;
+}
+
+.right-column-user-card .avatar-large {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  margin: 0 auto 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  color: var(--button-text-color);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.right-column-user-card .avatar-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.right-column-user-card h2 {
+  font-size: 1.6em;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
+
+.right-column-user-card span {
+  font-size: 0.9em;
+  color: var(--secondary-text-color);
+  display: block;
+  margin-bottom: 15px;
+}
+
+.verified-account {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: rgba(76, 175, 80, 0.2);
+  color: var(--income-color);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.user-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  flex-wrap: wrap; /* Permet aux stats de passer à la ligne */
+  gap: 10px;
+}
+
+.user-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1; /* Permet aux éléments de prendre de l'espace égal */
+  min-width: 80px; /* Largeur minimale pour éviter le chevauchement */
+}
+
+.user-stat-item .value {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.user-stat-item .label {
+  font-size: 0.8em;
+  color: var(--secondary-text-color);
+}
+
+.user-stat-item .value.income { color: var(--income-color); }
+.user-stat-item .value.expenses { color: var(--expenses-color); }
+.user-stat-item .value.points { color: var(--points-color); }
+
+/* Earnings Chart Card */
+.earnings-chart-card {
+  padding: 25px;
+}
+
+.earnings-chart-card h3 {
+  margin-bottom: 20px;
+}
+
+.earnings-chart-wrapper {
+  height: 150px;
+  width: 100%;
+  position: relative;
+}
+
+.earnings-chart-line {
+  stroke: var(--chart-line-color);
+  stroke-width: 3;
+  fill: none;
+  transition: stroke 0.3s ease;
+}
+
+.earnings-chart-fill {
+  fill: var(--primary-color);
+  opacity: 0.15;
+  transition: fill 0.3s ease;
+}
+
+.earnings-x-axis-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75em;
+  color: var(--secondary-text-color);
+  margin-top: 10px;
+  padding: 0 5px;
+}
+
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: var(--input-background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  color: var(--text-color);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0; /* Empêche le bouton de rétrécir */
+}
+
+.theme-toggle:hover {
+  background-color: var(--border-color);
+}
+
+.theme-toggle svg {
+  font-size: 1.2em;
+  color: var(--icon-color);
+}
+
+/* General button styles */
+button {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Utility classes (optional, but good for common patterns) */
+.flex-row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Pour les écrans de taille moyenne (tablettes en mode paysage, petits ordinateurs portables) */
+@media (max-width: 1200px) {
+  .main-content-area.dashboard-layout {
+    grid-template-columns: 1fr 300px; /* La colonne de droite devient un peu plus petite */
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
+/* Pour les tablettes en mode portrait et mobiles plus grands */
+@media (max-width: 992px) {
+  .main-content-area.dashboard-layout {
+    grid-template-columns: 1fr; /* Les colonnes du dashboard s'empilent en une seule */
+    padding: 20px; /* Ajuste le padding */
+    gap: 30px; /* Plus d'espace entre les sections empilées */
+  }
+
+  .dashboard-left,
+  .dashboard-right {
+    /* Annule les flex-grow/shrink ou grid-area pour qu'ils prennent toute la largeur */
+    width: 100%;
+    max-width: 100%;
+    flex: none; /* Important pour désactiver le comportement flex des colonnes */
+    min-width: unset; /* Annule le min-width fixe sur mobile pour la colonne droite */
+  }
+
+  /* Ajustements pour le header sur les écrans intermédiaires */
+  .header {
+    flex-direction: column; /* Les éléments du header s'empilent */
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
+  .header-left,
+  .header-right {
+    width: 100%; /* Les sections gauche/droite du header prennent toute la largeur */
+    justify-content: center; /* Centre leur contenu */
+    flex-wrap: wrap; /* Assure que les éléments internes s'adaptent */
+  }
+
+  .header-nav {
+    justify-content: center; /* Centre les liens de navigation */
+    order: 1; /* Met la navigation en premier si le header est en colonne */
+    width: 100%;
+  }
+
+  .search-bar {
+    width: 100%; /* La barre de recherche prend toute la largeur */
+    max-width: 400px; /* Limite sa largeur pour qu'elle ne soit pas trop grande */
+    order: 2; /* Met la barre de recherche après la nav */
+    margin-bottom: 10px;
+  }
+
+  .user-profile {
+    order: 3; /* Met le profil utilisateur en dernier */
+  }
+
+  .theme-toggle {
+    order: 4; /* Met le bouton de thème en dernier */
+    margin-top: 10px; /* Espace après les autres éléments */
+  }
+
+  .overview-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 2 colonnes minimum */
+    gap: 15px;
+  }
+
+  /* Ajustements généraux pour les titres et paddings */
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.6em; }
+  h3 { font-size: 1.3em; }
+}
+
+/* Pour les mobiles (smartphones) */
+@media (max-width: 768px) {
+  .header-nav {
+    display: none; /* Cache la navigation principale sur les très petits écrans */
+  }
+  .header-left {
+    justify-content: space-between; /* Aligne le logo à gauche, le reste à droite */
+    flex-wrap: nowrap; /* Empêche le wrap sur cette ligne pour le logo/profil */
+  }
+  .header-logo {
+    margin-right: auto; /* Pousse le logo à gauche */
+  }
+  .user-profile-text {
+    display: none; /* Cache le texte du profil utilisateur sur les très petits écrans */
+  }
+  .search-bar {
+    width: 100%; /* La barre de recherche prend toute la largeur */
+    max-width: none; /* Supprime la max-width pour qu'elle s'étire */
+    margin-bottom: 10px;
+  }
+  .main-content-area {
+    padding: 10px; /* Réduit le padding général */
+  }
+  .dashboard-card, .balance-card {
+    padding: 20px; /* Réduit le padding des cartes */
+  }
+  .dashboard-card h3 {
+    font-size: 1em;
+  }
+  .small-stat .stat-value {
+    font-size: 1.5em;
+  }
+  .balance-card .balance-amount {
+    font-size: 1.8em;
+  }
+  .overview-cards-grid {
+    grid-template-columns: 1fr; /* Toutes les cartes d'aperçu s'empilent en une seule colonne */
+  }
+  .user-stats {
+    flex-direction: column; /* Les statistiques utilisateur s'empilent */
+    gap: 15px;
+  }
+}
+
+/* Pour les très petits écrans (ex: iPhone SE) */
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 15px;
+  }
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.3em; }
+  h3 { font-size: 1.1em; }
+
+  .dashboard-card, .balance-card {
+    padding: 15px;
+  }
+  .small-stat .stat-value {
+    font-size: 1.3em;
+  }
+  .balance-card .balance-amount {
+    font-size: 1.5em;
+  }
+}
