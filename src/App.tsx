@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaArrowUp, FaArrowDown, FaRegClock, FaCheckCircle, FaChartLine } from 'react-icons/fa';
+import { FaArrowUp, FaArrowDown, FaRegClock, FaCheckCircle } from 'react-icons/fa';
 import { GiReceiveMoney } from 'react-icons/gi'; // For the money icon on balance card
 import Header from './components/Header';
 import DashboardCard from './components/DashboardCard';
